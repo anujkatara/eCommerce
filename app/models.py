@@ -2,6 +2,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -67,3 +68,14 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserProfile(models.Model):
+    """ User registration model """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=500, null=True)
+    contact = models.CharField(max_length=11)
+    postal_code = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.user.username
